@@ -1,0 +1,24 @@
+<form [formGroup]="myform" (ngSubmit)="onSubmit()">
+  <div class="mb-3 w-50 container">
+    
+    <label for="username" class="form-label">User Name</label>
+    <input type="text" id="username" formControlName="uname" class="form-control">
+    
+    <div *ngIf="uname?.invalid && (uname?.dirty || uname?.touched)" class="alert alert-danger">
+      <div *ngIf="uname?.errors?.['required']">Name is required.</div>
+      <div *ngIf="uname?.errors?.['minlength']">Name must be at least 4 characters long.</div>
+    </div>
+
+    <label for="email" class="form-label">Email</label>
+    <input type="text" id="email" formControlName="email" class="form-control">
+
+    <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert alert-danger">
+      <div *ngIf="email?.errors?.['required']">Email is required.</div>
+      <div *ngIf="email?.errors?.['email']">Please enter a valid email.</div>
+    </div>
+
+    <div class="container text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="myform.invalid">Submit</button>
+    </div>
+  </div>
+</form>

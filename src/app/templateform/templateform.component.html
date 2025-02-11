@@ -1,0 +1,57 @@
+<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+    <div class="mb-3 w-50 container">
+      <label for="username" class="form-label">User Name</label>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="bi bi-person-fill"></i>
+        </span>
+        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
+          [ngClass]="{'is-invalid': f.submitted && username.errors}" autocomplete="off" required minlength="4"
+          maxlength="10" pattern="(^[A-Z]{1,1})([a-z]{1,19})$">
+      </div>
+      <div *ngIf="f.submitted && username.errors" class="invalid-feedback">
+        <div *ngIf="username.errors['required']">User Name is required</div>
+        <div *ngIf="username.errors['minlength']">User Name must be at least 4 characters</div>
+        <div *ngIf="username.errors['pattern']">Pattern does not match</div>
+      </div>
+    </div>
+  
+    <div class="mb-3 w-50 container">
+      <label for="email" class="form-label">Email</label>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="bi bi-envelope-fill"></i>
+        </span>
+        <input type="email" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel"
+          [ngClass]="{'is-invalid': f.submitted && email.errors}" autocomplete="off" required
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+      </div>
+      <div *ngIf="f.submitted && email.errors" class="invalid-feedback">
+        <div *ngIf="email.errors['required']">Email is required</div>
+        <div *ngIf="email.errors['pattern']">Please enter a valid email address</div>
+      </div>
+    </div>
+  
+    <div class="mb-3 w-50 container">
+      <label for="password" class="form-label">Password</label>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="bi bi-lock-fill"></i>
+        </span>
+        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
+          [ngClass]="{'is-invalid': f.submitted && password.errors}" autocomplete="off" required minlength="6"
+          maxlength="15">
+      </div>
+      <div *ngIf="f.submitted && password.errors" class="invalid-feedback">
+        <div *ngIf="password.errors['required']">Password is required</div>
+        <div *ngIf="password.errors['minlength']">Password must be at least 6 characters</div>
+      </div>
+    </div>
+  
+    <div class="container text-center">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  
